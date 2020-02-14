@@ -64,6 +64,7 @@ If there are multiple elements with fc-drop-area in the dom tree, all of them wi
   `fileChoice.events().on('filedrop', (data) => {});`, you can get the file that was dropped or picked up from the dialog.
  
  ```javascript 
+import {FileChoice} from 'file-choice';// for npm environment
 
     const fileChoice = new FileChoice();
 
