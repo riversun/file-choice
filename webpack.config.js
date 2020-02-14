@@ -25,6 +25,7 @@ module.exports = (env, argv) => {
             publicPath: '/js/',
             filename: argv.mode === 'production' ? `[name].js` : `[name].js`,
             library: '',
+            //libraryExport: 'default' ,
             libraryTarget: 'umd'
         },
         optimization: {

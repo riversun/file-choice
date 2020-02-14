@@ -1,8 +1,8 @@
 {
   "name": "file-choice",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "Helper class for selecting files by drag and drop,file reference",
-  "main": "dist/file-choice.min.js",
+  "main": "src/index.js",
   "scripts": {
     "start": "webpack-dev-server",
     "release": "webpack --config webpack.config.js --mode production",
@@ -36,8 +36,7 @@
     "webpack-dev-server": "^3.10.3"
   },
   "dependencies": {
-    "@riversun/event-emitter": "^1.0.2",
-    "core-js": "^3.6.4"
+    "@riversun/event-emitter": "^1.1.0"
   },
   "directories": {
     "test": "test"
