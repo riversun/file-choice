@@ -1,0 +1,11 @@
+p {
+    font-weight: bold;
+}
+
+.color-part1 {
+    background: lightgreen;
+}
+
+.color-part2 {
+    background: lightblue;
+}

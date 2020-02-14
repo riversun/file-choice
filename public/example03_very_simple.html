@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>File Choice Demo - Simple </title>
+</head>
+<body>
+
+<div class="fc-drop-area color-part1" >
+    <br>
+    <p>Drop files here part 1</p>
+    <br>
+</div>
+<br>
+
+<div class="fc-drop-area color-part2">
+    <div class="fc-drop-area-inside">
+        <div class="fc-disp-default">
+            <p>Drop files here part 2</p>
+        </div>
+        <div class="fc-disp-drag">
+            <p>Drop here to add the file</p>
+        </div>
+    </div>
+</div>
+
+<div style="position:absolute;bottom:6px">Examples:<br>
+    <a href="index.html">Top</a>&nbsp;|&nbsp;
+    <a href="example01_multi_areas.html">01 Multi Areas</a>&nbsp;|&nbsp;
+    <a href="example02_styling.html">02 Styling</a>&nbsp;|&nbsp;
+    <a href="example03_very_simple.html">03 Very Simple</a>&nbsp;|&nbsp;
+    <a href="example04_paste_image.html">04 Paste Image from Clipboard</a>&nbsp;|&nbsp;
+</div>
+
+<script src="js/file-choice.js"></script>
+<script>
+
+    const fileChoice = new FileChoice();
+
+    fileChoice.events().on('filedrop', (data) => {
+
+        const droppedFileInfo = [];
+
+        const target = data.target;
+        const files = data.files;
+
+        for (const file of files) {
+
+            droppedFileInfo.push(
+                {
+                    name: file.name,
+                    size: file.size,
+                    type: file.type
+                }
+            );
+        }
+
+        alert(`target=${target.id} ${JSON.stringify(droppedFileInfo)}`);
+    });
+
+</script>
+<link rel="stylesheet" href="example03.css">
+</body>
+</html>

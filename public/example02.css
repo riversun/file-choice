@@ -1,0 +1,38 @@
+.app-bold{
+
+}
+/* Entire file drop area */
+.fc-drop-area {
+    border: solid 1px pink;
+    background: lightpink;
+    padding: 0px;
+    text-align: center;
+}
+
+.fc-drop-area p {
+    color: #666666;
+}
+
+/* Default file-drop-area-view style before dragging files */
+.fc-drop-area-inside {
+    color: #333;
+    padding: 6px;
+    margin: 6px;
+    border: 5px solid transparent;
+}
+
+/* When an allowed object is being dragged */
+.fc-drop-area.dragover .fc-drop-area-inside {
+    border: 5px dashed hotpink;
+}
+
+
+/* When a not-allowed object is being dragged */
+.fc-drop-area.dragover-not-allowed .fc-drop-area-inside {
+    border: 5px dashed #ddd;
+}
+
+/* style around file chooser */
+.fc-file-ref a, .fc-file-ref a:visited {
+    color: dodgerblue;
+}

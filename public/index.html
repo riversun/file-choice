@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>File Choice Demo</title>
+</head>
+<body>
+
+<div id="file-drop-area" class="fc-drop-area">
+    <div class="fc-drop-area-inside">
+        <div class="fc-disp-default">
+            <p>Drop here the files you want to handle</p>
+        </div>
+        <div class="fc-disp-drag">
+            <p>Drop here to add the file</p>
+        </div>
+        <div class="fc-disp-drag-not-allow">
+            <p>The object cannot be dropped</p>
+        </div>
+        <p class="fc-visible-default">OR</p>
+        <div class="fc-file-ref">
+            <span>Select file</span>
+        </div>
+    </div>
+</div>
+
+<div style="position:absolute;bottom:6px">Examples:<br>
+    <a href="index.html">Top</a>&nbsp;|&nbsp;
+    <a href="example01_multi_areas.html">01 Multi Areas</a>&nbsp;|&nbsp;
+    <a href="example02_styling.html">02 Styling</a>&nbsp;|&nbsp;
+    <a href="example03_very_simple.html">03 Very Simple</a>&nbsp;|&nbsp;
+    <a href="example04_paste_image.html">04 Paste Image from Clipboard</a>&nbsp;|&nbsp;
+</div>
+
+<script src="js/file-choice.js"></script>
+<script>
+
+    const fileChoice = new FileChoice();
+
+    //set 'filedrop' event of file-choice
+    fileChoice.events().on('filedrop', (data) => {
+
+        //data.target is the element with class="fc-drop-area".
+        const target = data.target;
+        const files = data.files;
+
+        const droppedFileInfo = [];
+
+        for (const file of files) {
+
+            droppedFileInfo.push(
+                {
+                    name: file.name,
+                    size: file.size,
+                    type: file.type
+                }
+            );
+        }
+
+        alert(JSON.stringify(droppedFileInfo));
+    });
+
+</script>
+</body>
+</html>
