@@ -1,4 +1,7 @@
 # file-choice
+
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/a62c1084bbb94543aff20c4e8243f4af)](https://app.codacy.com/manual/riversun/file-choice?utm_source=github.com&utm_medium=referral&utm_content=riversun/file-choice&utm_campaign=Badge_Grade_Dashboard)
+
  
 Helper library for dragging and dropping files.
  
