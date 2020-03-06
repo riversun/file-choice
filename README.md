@@ -3,6 +3,7 @@
 [![npm version](https://badge.fury.io/js/%40riversun%2Fsimple-date-format.svg)](https://badge.fury.io/js/%40riversun%2Fsimple-date-format)
 [![](https://data.jsdelivr.com/v1/package/npm/@riversun/simple-date-format/badge)](https://www.jsdelivr.com/package/npm/@riversun/simple-date-format)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/a62c1084bbb94543aff20c4e8243f4af)](https://app.codacy.com/manual/riversun/file-choice?utm_source=github.com&utm_medium=referral&utm_content=riversun/file-choice&utm_campaign=Badge_Grade_Dashboard)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
  
 Helper library for dragging and dropping files.
