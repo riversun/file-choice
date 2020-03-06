@@ -1,6 +1,6 @@
 {
   "name": "file-choice",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Helper class for selecting files by drag and drop,file reference",
   "main": "src/index.js",
   "scripts": {
