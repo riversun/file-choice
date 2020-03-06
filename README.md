@@ -7,6 +7,10 @@ This library allows you to do the following:
  - Click on the link to browse local files
  - You can paste the image data on the clipboard and get it as a file
  
+# Demo
+ 
+https://riversun.github.io/file-choice
+
 # Install
 
 - **NPM**
@@ -17,11 +21,11 @@ npm install file-choice
 
 or 
 
-- **use `<script>` tag** 
+- **use `<script>` tag**  from CDN
 
 
 ```html                                      
-<script src="https://riversun.github.io/file-choice/js/file-choice.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/file-choice@1.1.1/lib/file-choice.js"></script>
 ```
 
 # Usage
@@ -64,7 +68,7 @@ If there are multiple elements with fc-drop-area in the dom tree, all of them wi
   `fileChoice.events().on('filedrop', (data) => {});`, you can get the file that was dropped or picked up from the dialog.
  
  ```javascript 
-import {FileChoice} from 'file-choice';// for npm environment
+import FileChoice from 'file-choice';// for npm environment
 
     const fileChoice = new FileChoice();
 
@@ -111,6 +115,134 @@ You can paste "image" data as a file by "ctrl+V" from clipboard.
 ![filechoice_ex2](https://user-images.githubusercontent.com/11747460/74494349-295d2100-4f18-11ea-9073-b804a100b320.gif)
 
 
-# Demo
 
-https://riversun.github.io/file-choice
+
+## styling
+
+```css
+/* Entire file drop area */
+.fc-drop-area {
+  border: solid 1px #ccc;
+  background: #eee;
+  padding: 0px;
+  text-align: center;
+}
+
+.fc-drop-area p {
+  color: #666666;
+}
+
+/* Default file-drop-area-view style before dragging files */
+
+.fc-drop-area-inside {
+  color: #333;
+  padding: 6px;
+  margin: 6px;
+  border: 5px solid transparent;
+}
+
+.fc-drop-area-inside div.fc-disp-default, .fc-drop-area-inside div.fc-disp-drag, .fc-drop-area-inside div.fc-disp-drag-not-allow {
+  font-weight: bold;
+}
+
+
+.fc-disp-default {
+  display: block;
+}
+
+.fc-visible-default {
+  visibility: visible;
+}
+
+.fc-disp-drag {
+  display: none;
+
+}
+
+.fc-disp-drag-not-allow {
+  display: none;
+
+}
+
+.fc-disp-drag-not-allow > p {
+  color: red;
+}
+
+.fc-file-ref {
+  visibility: visible;
+
+}
+
+/* /Default file-drop-area-view style before dragging files */
+
+
+/* When an allowed object is being dragged */
+.fc-drop-area.dragover .fc-drop-area-inside {
+  border: 5px dashed #ddd;
+}
+
+.fc-drop-area.dragover .fc-disp-drag {
+  display: block;
+}
+
+.fc-drop-area.dragover .fc-disp-drag-not-allow {
+  display: none;
+}
+
+.fc-drop-area.dragover .fc-disp-default {
+  display: none;
+}
+
+.fc-drop-area.dragover .fc-visible-default {
+  visibility: hidden;
+}
+
+.fc-drop-area.dragover .fc-file-ref {
+  visibility: hidden;
+}
+
+/* /When an allowed object is being dragged */
+
+/* When a not-allowed object is being dragged */
+.fc-drop-area.dragover-not-allowed .fc-drop-area-inside {
+  border: 5px dashed #ddd;
+}
+
+.fc-drop-area.dragover-not-allowed .fc-disp-drag {
+  display: none;
+}
+
+.fc-drop-area.dragover-not-allowed .fc-disp-drag-not-allow {
+  display: block;
+}
+
+.fc-drop-area.dragover-not-allowed .fc-disp-default {
+  display: none;
+}
+
+.fc-drop-area.dragover-not-allowed .fc-visible-default {
+  visibility: hidden;
+}
+
+.fc-drop-area.dragover-not-allowed .fc-file-ref {
+  visibility: hidden;
+}
+
+/* /When a not-allowed object is being dragged */
+
+/* style around file chooser */
+.fc-file-ref a, .fc-file-ref a:visited {
+  color: dodgerblue;
+}
+
+.fc-input {
+  visibility: hidden;
+  width: 0px;
+  height: 0px;
+}
+
+/* /style around file chooser */
+
+/* /Entire file drop area */
+
+```

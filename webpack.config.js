@@ -21,12 +21,13 @@ module.exports = (env, argv) => {
             "file-choice": ['./src/index.js'],
         },
         output: {
-            path: path.join(__dirname, 'dist'),
+            path: path.join(__dirname, 'lib'),
             publicPath: '/js/',
             filename: argv.mode === 'production' ? `[name].js` : `[name].js`,
-            library: '',
-            //libraryExport: 'default' ,
-            libraryTarget: 'umd'
+            library: 'FileChoice',
+            libraryExport: 'default',
+            libraryTarget: 'umd',
+            globalObject: 'this',
         },
         optimization: {
             minimizer: [new TerserPlugin({

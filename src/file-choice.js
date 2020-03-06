@@ -1,3 +1,4 @@
+
 import EventEmitter from '@riversun/event-emitter';
 
 /**

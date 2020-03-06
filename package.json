@@ -1,11 +1,12 @@
 {
   "name": "file-choice",
-  "version": "1.0.3",
+  "version": "1.1.1",
   "description": "Helper class for selecting files by drag and drop,file reference",
-  "main": "src/index.js",
+  "main": "lib/file-choice.js",
   "scripts": {
     "start": "webpack-dev-server",
     "release": "webpack --config webpack.config.js --mode production",
+    "build": "webpack --config webpack.config.js --mode development",
     "test": "jest -i",
     "test:coverage": "npm run test -- --coverage"
   },
