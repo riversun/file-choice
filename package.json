@@ -1,6 +1,6 @@
 {
   "name": "file-choice",
-  "version": "1.1.2",
+  "version": "1.2.0",
   "description": "Helper class for selecting files by drag and drop,file reference",
   "main": "lib/file-choice.js",
   "scripts": {
@@ -10,6 +10,9 @@
     "test": "jest -i",
     "test:coverage": "npm run test -- --coverage"
   },
+  "browserslist": [
+    "since 2017-06"
+  ],
   "author": "Tom Misawa <riversun.org@gmail.com> (https://github.com/riversun)",
   "license": "MIT",
   "repository": {
