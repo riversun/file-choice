@@ -2,19 +2,18 @@
 
 [![npm version](https://badge.fury.io/js/%40riversun%2Fsimple-date-format.svg)](https://badge.fury.io/js/%40riversun%2Fsimple-date-format)
 [![](https://data.jsdelivr.com/v1/package/npm/@riversun/simple-date-format/badge)](https://www.jsdelivr.com/package/npm/@riversun/simple-date-format)
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/a62c1084bbb94543aff20c4e8243f4af)](https://app.codacy.com/manual/riversun/file-choice?utm_source=github.com&utm_medium=referral&utm_content=riversun/file-choice&utm_campaign=Badge_Grade_Dashboard)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
- 
 Helper library for dragging and dropping files.
- 
+
 This library allows you to do the following:
- - Files can be obtained by drag and drop
- - Click on the link to browse local files
- - You can paste the image data on the clipboard and get it as a file
- 
+
+- Files can be obtained by drag and drop
+- Click on the link to browse local files
+- You can paste the image data on the clipboard and get it as a file
+
 # Demo
- 
+
 https://riversun.github.io/file-choice
 
 # Install
@@ -25,10 +24,9 @@ https://riversun.github.io/file-choice
 npm install file-choice
 ```
 
-or 
+or
 
 - **use `<script>` tag**  from CDN
-
 
 ```html                                      
 <script src="https://cdn.jsdelivr.net/npm/file-choice@1.1.1/lib/file-choice.js"></script>
@@ -37,7 +35,7 @@ or
 # Usage
 
 ## HTML
- 
+
 Here is the typical html for file-choice
 
 'file-choice' enables file drag & drop function for an element with 'fc-drop-area' specified as CSS class name.
@@ -46,8 +44,8 @@ If there are multiple elements with fc-drop-area in the dom tree, all of them wi
 
 ![filechoice_ex1](https://user-images.githubusercontent.com/11747460/74494346-25310380-4f18-11ea-86e3-dbcc8327f6bd.gif)
 
- 
  ```html
+
 <div id="file-drop-area" class="fc-drop-area">
     <div class="fc-drop-area-inside">
         <div class="fc-disp-default">
@@ -66,13 +64,12 @@ If there are multiple elements with fc-drop-area in the dom tree, all of them wi
     </div>
 </div>
 ``` 
- 
- 
- ## Code
- 
- By creating a `FileChoice` object and setting an event handler by 
-  `fileChoice.events().on('filedrop', (data) => {});`, you can get the file that was dropped or picked up from the dialog.
- 
+
+## Code
+
+By creating a `FileChoice` object and setting an event handler by
+`fileChoice.events().on('filedrop', (data) => {});`, you can get the file that was dropped or picked up from the dialog.
+
  ```javascript 
 import FileChoice from 'file-choice';// for npm environment
 
@@ -104,78 +101,108 @@ import FileChoice from 'file-choice';// for npm environment
 
 ```
 
-
 ## Enable "paste" from Clipboard
 
-Create `FileChoice` object with option like below.
+- pasete "image"
+  Create `FileChoice` object with option like below.
 
 You can paste "image" data as a file by "ctrl+V" from clipboard.
 
 ```javascript
-    const fileChoice = new FileChoice({
-        pasteEnabled: true
-    });
+const fileChoice = new FileChoice({
+  pasteEnabled: true
+});
+const files = data.files;
 
+for (const file of files) {
+
+  if (file.type.startsWith('image/')) {
+    const image = await fileChoice.getImageFromFileAsync(file, image => {
+      // to do handling image
+    });
+  }
+}
 ```
 
 ![filechoice_ex2](https://user-images.githubusercontent.com/11747460/74494349-295d2100-4f18-11ea-9073-b804a100b320.gif)
 
+- paste "string" like a text/plain , text/html
 
+```js
+const fileChoice = new FileChoice({
+  pasteEnabled: true
+});
 
+fileChoice.events().on('paste', async (data) => {
+  const clipboardItems = data.itemMap;
+
+  const previewArea = document.querySelector('#image-preview');
+  previewArea.innerHTML = '';
+
+  let item = clipboardItems.get('text/html');
+  if (!item) {
+    // get the first item of the map
+    item = clipboardItems.values().next().value;
+  }
+
+  const clipboardText = await fileChoice.getStringFromClipboardItemAsync(item);
+  console.log('clipboardText', clipboardText);
+});
+```
 
 ## styling
 
 ```css
 /* Entire file drop area */
 .fc-drop-area {
-  border: solid 1px #ccc;
-  background: #eee;
-  padding: 0px;
-  text-align: center;
+    border: solid 1px #ccc;
+    background: #eee;
+    padding: 0px;
+    text-align: center;
 }
 
 .fc-drop-area p {
-  color: #666666;
+    color: #666666;
 }
 
 /* Default file-drop-area-view style before dragging files */
 
 .fc-drop-area-inside {
-  color: #333;
-  padding: 6px;
-  margin: 6px;
-  border: 5px solid transparent;
+    color: #333;
+    padding: 6px;
+    margin: 6px;
+    border: 5px solid transparent;
 }
 
 .fc-drop-area-inside div.fc-disp-default, .fc-drop-area-inside div.fc-disp-drag, .fc-drop-area-inside div.fc-disp-drag-not-allow {
-  font-weight: bold;
+    font-weight: bold;
 }
 
 
 .fc-disp-default {
-  display: block;
+    display: block;
 }
 
 .fc-visible-default {
-  visibility: visible;
+    visibility: visible;
 }
 
 .fc-disp-drag {
-  display: none;
+    display: none;
 
 }
 
 .fc-disp-drag-not-allow {
-  display: none;
+    display: none;
 
 }
 
 .fc-disp-drag-not-allow > p {
-  color: red;
+    color: red;
 }
 
 .fc-file-ref {
-  visibility: visible;
+    visibility: visible;
 
 }
 
@@ -184,67 +211,67 @@ You can paste "image" data as a file by "ctrl+V" from clipboard.
 
 /* When an allowed object is being dragged */
 .fc-drop-area.dragover .fc-drop-area-inside {
-  border: 5px dashed #ddd;
+    border: 5px dashed #ddd;
 }
 
 .fc-drop-area.dragover .fc-disp-drag {
-  display: block;
+    display: block;
 }
 
 .fc-drop-area.dragover .fc-disp-drag-not-allow {
-  display: none;
+    display: none;
 }
 
 .fc-drop-area.dragover .fc-disp-default {
-  display: none;
+    display: none;
 }
 
 .fc-drop-area.dragover .fc-visible-default {
-  visibility: hidden;
+    visibility: hidden;
 }
 
 .fc-drop-area.dragover .fc-file-ref {
-  visibility: hidden;
+    visibility: hidden;
 }
 
 /* /When an allowed object is being dragged */
 
 /* When a not-allowed object is being dragged */
 .fc-drop-area.dragover-not-allowed .fc-drop-area-inside {
-  border: 5px dashed #ddd;
+    border: 5px dashed #ddd;
 }
 
 .fc-drop-area.dragover-not-allowed .fc-disp-drag {
-  display: none;
+    display: none;
 }
 
 .fc-drop-area.dragover-not-allowed .fc-disp-drag-not-allow {
-  display: block;
+    display: block;
 }
 
 .fc-drop-area.dragover-not-allowed .fc-disp-default {
-  display: none;
+    display: none;
 }
 
 .fc-drop-area.dragover-not-allowed .fc-visible-default {
-  visibility: hidden;
+    visibility: hidden;
 }
 
 .fc-drop-area.dragover-not-allowed .fc-file-ref {
-  visibility: hidden;
+    visibility: hidden;
 }
 
 /* /When a not-allowed object is being dragged */
 
 /* style around file chooser */
 .fc-file-ref a, .fc-file-ref a:visited {
-  color: dodgerblue;
+    color: dodgerblue;
 }
 
 .fc-input {
-  visibility: hidden;
-  width: 0px;
-  height: 0px;
+    visibility: hidden;
+    width: 0px;
+    height: 0px;
 }
 
 /* /style around file chooser */
