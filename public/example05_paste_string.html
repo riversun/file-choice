@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>File Choice Demo - Paste Image from Clipboard </title>
+    <title>File Choice Demo - Paste String from Clipboard </title>
 </head>
 <body>
 
@@ -13,7 +13,7 @@
 <div id="file-drop-area" class="fc-drop-area">
     <div class="fc-drop-area-inside">
         <div class="fc-disp-default">
-            <p>You can paste an image from the clipboard as well as dropping a file.</p>
+            <p>You can paste an item (contains strings) from the clipboard as well as dropping a file.</p>
         </div>
         <div class="fc-disp-drag">
             <p>Drop here to add the file</p>
@@ -43,25 +43,38 @@
 <script src="js/file-choice.js"></script>
 <script>
 
-    const fileChoice = new FileChoice({
-        pasteEnabled: true
-    });
 
-    fileChoice.events().on('filedrop', (data) => {
+  const fnSanitize = (str) => {
+    return String(str).replace(/&/g, "&amp;")
+      .replace(/"/g, "&quot;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+  };
 
-        const files = data.files;
+  const fileChoice = new FileChoice({
+    pasteEnabled: true
+  });
 
-        for (const file of files) {
+  fileChoice.events().on('paste', async (data) => {
+    const clipboardItems = data.itemMap;
 
-            if (file.type.startsWith('image/')) {
+    const previewArea = document.querySelector('#image-preview');
+    previewArea.innerHTML = '';
 
-                fileChoice.getImageFromFile(file, image => {
-                    const previewArea = document.querySelector('#image-preview');
-                    previewArea.insertBefore(image, previewArea.firstChild);
-                });
-            }
-        }
-    });
+    let item = clipboardItems.get('text/html');
+    if (!item) {
+      // get the first item of the map
+      item = clipboardItems.values().next().value;
+    }
+
+    const clipboardText = await fileChoice.getStringFromClipboardItemAsync(item);
+    const div = document.createElement('div');
+    div.style.border = 'solid 1px';
+    div.style.fontSize = '10px';
+    div.innerHTML = fnSanitize(clipboardText);
+    previewArea.insertBefore(div, previewArea.firstChild);
+
+  });
 
 </script>
 </body>
