@@ -208,5 +208,16 @@ export default class FileChoice {
         });
     }
 
+    /**
+     * Raise "paste" event
+     * @param pastedItemMap
+     */
+    doPaste(pastedItemMap) {
+        this.eventEmitter.emit('paste', {
+            target: this.fileDropAreaEle,
+            itemMap:pastedItemMap,
+        });
+    }
+
 
 }
